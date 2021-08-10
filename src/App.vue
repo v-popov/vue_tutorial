@@ -2,36 +2,31 @@
 // It should have template, script, and style sections
 
 // Specifying layout - buttons, titles, etc.
-// {{ }} -> interpolation
-// v-on - директива; it can subscribe to different events (click in our case)
-// v-on for shorthand can be replaced with "@" symbol (addDislike example)
+
 <template>
   <div>
 
-    <div class="post">
-      <div><strong>Name:</strong> my name</div>
-      <div><strong>Description:</strong> my description</div>
-    </div>
-
-    <div class="post">
-      <div><strong>Name:</strong> my name</div>
-      <div><strong>Description:</strong> my description</div>
-    </div>
-
-    <div class="post">
-      <div><strong>Name:</strong> my name</div>
-      <div><strong>Description:</strong> my description</div>
+    <div class="post" v-for="post in posts">
+      <div><strong>Name: </strong> {{ post.title }}</div>
+      <div><strong>Description: </strong> {{ post.body }}</div>
     </div>
 
   </div>
 </template>
 
 
-
-// Specifying component logic; create functions; declare variables
-// In this section we need to export an object: export default { }
 <script>
 export default {
+
+  data() {
+    return {
+      posts: [
+        {id: 1, title: 'Some Title', body: 'Some Description'},
+        {id: 2, title: 'Some Title 2', body: 'Some Description 2'},
+        {id: 3, title: 'Some Title 3', body: 'Some Description 3'}
+      ]
+    }
+  },
 
 }
 </script>
