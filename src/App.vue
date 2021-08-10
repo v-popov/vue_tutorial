@@ -8,16 +8,24 @@
 <template>
   <div>
 
-    <div>
-      <button v-on:click="addLike">Like</button>
-      <button @click="addDislike">Dislike</button>
+    <div class="post">
+      <div><strong>Name:</strong> my name</div>
+      <div><strong>Description:</strong> my description</div>
     </div>
 
-    <div>Num Likes: {{ likes }}</div>
-    <div>Num DisLikes: {{ dislikes }}</div>
+    <div class="post">
+      <div><strong>Name:</strong> my name</div>
+      <div><strong>Description:</strong> my description</div>
+    </div>
+
+    <div class="post">
+      <div><strong>Name:</strong> my name</div>
+      <div><strong>Description:</strong> my description</div>
+    </div>
 
   </div>
 </template>
+
 
 
 // Specifying component logic; create functions; declare variables
@@ -25,26 +33,33 @@
 <script>
 export default {
 
-  data() { // function
-    return {
-      likes: 0, // initializing variable ("field") likes
-      dislikes: 8,
-    }
-  },
-
-  methods: {
-    addLike() {
-      this.likes += 1;
-    },
-    addDislike() {
-      this.dislikes += 1;
-    }
-  }
 }
 </script>
 
 
 
-<style>
+<!--
+If we want this style to be available only for this component
+we can add flag scoped: <style scoped>
+Star (*) means the style will be applied for all elements
 
+Классическое обнуление:
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+-->
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.post {
+  padding: 15px;
+  border: 2px solid teal;
+  margin-top: 15px;
+}
 </style>
