@@ -1,43 +1,28 @@
 // This is Single File Component
 // It should have template, script, and style sections
 
-// Specifying layout - buttons, titles, etc.
-
-// v-bind allows us to connect (bind) data (model) to a component
-// value is a standard attribute of any input
-// But component is not connected to data (model) yet (uni-directional)
-// Thus, changes in component (entering text in the input field) will not modify the data (model)
-
-// To make this connection bi-directional (syncronized) we need to subscribe to the 'input' event: @input
-// We can either pass a method name to @input (like we do for title), or pass the command directly (like we do for body)
-
-// @submit.prevent in the form prevents browser from refresh after we click the 'Add Post' button.
-// If a browser refreshes, we will loose the post that we've added using the form
+// posts are defined in the model "data" in "script" section
+// ":posts" can be used as a shorthand for "v-bind:posts"
 <template>
-  <div>
-
-    <form @submit.prevent>
-      <h4>Post Creation</h4>
-      <input class='input' v-bind:value='title' @input='inputTitle' type='text' placeholder='Name'>
-      <input class='input' v-bind:value='body' @input='body = $event.target.value' type='text' placeholder='Description'>
-      <button class='btn' @click='createPost'>Add Post</button>
-    </form>
-
-    <div class="post" v-for="post in posts">
-      <div><strong>Name: </strong> {{ post.title }}</div>
-      <div><strong>Description: </strong> {{ post.body }}</div>
-    </div>
-
+  <div class='app'>
+    <post-form/>
+    <post-list :posts='posts'/>
   </div>
 </template>
 
 
 <!--
-newPost object should have a unique id
-We set this.title and this.body to empty strings after pushing new post to this.posts to erase the content of input forms
+@ references src folder (can be used from any project directory)
 -->
 <script>
+import PostForm from './components/PostForm';
+import PostList from '@/components/PostList';
+
 export default {
+
+  components: {
+    PostForm, PostList
+  },
 
   data() {
     return {
@@ -97,30 +82,4 @@ Star (*) means the style will be applied for all elements
   padding: 20px;
 }
 
-.post {
-  padding: 15px;
-  border: 2px solid teal;
-  margin-top: 15px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  width: 100%;
-  border: 1px solid teal;
-  padding: 10px 15px;
-  margin-top: 5px;
-}
-
-.btn {
-  margin-top: 5px;
-  align-self: flex-end;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-}
 </style>
