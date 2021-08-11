@@ -18,9 +18,9 @@
 
     <form @submit.prevent>
       <h4>Post Creation</h4>
-      <input v-bind:value='title' @input='inputTitle' type='text' placeholder='Name'>
-      <input v-bind:value='body' @input='body = $event.target.value' type='text' placeholder='Description'>
-      <button @click='createPost'>Add Post</button>
+      <input class='input' v-bind:value='title' @input='inputTitle' type='text' placeholder='Name'>
+      <input class='input' v-bind:value='body' @input='body = $event.target.value' type='text' placeholder='Description'>
+      <button class='btn' @click='createPost'>Add Post</button>
     </form>
 
     <div class="post" v-for="post in posts">
@@ -93,9 +93,34 @@ Star (*) means the style will be applied for all elements
   box-sizing: border-box;
 }
 
+.app {
+  padding: 20px;
+}
+
 .post {
   padding: 15px;
   border: 2px solid teal;
   margin-top: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid teal;
+  padding: 10px 15px;
+  margin-top: 5px;
+}
+
+.btn {
+  margin-top: 5px;
+  align-self: flex-end;
+  padding: 10px 15px;
+  background: none;
+  color: teal;
+  border: 1px solid teal;
 }
 </style>
