@@ -5,7 +5,8 @@
   </div>
 </template>
 
-<!--props defines arguments of the current component (posts in our case)-->
+<!--props defines arguments of the current component (posts in our case)
+that are passed from a parent (App.vue in our case)-->
 <script>
 export default {
   props: {

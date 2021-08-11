@@ -3,16 +3,25 @@
 
 // posts are defined in the model "data" in "script" section
 // ":posts" can be used as a shorthand for "v-bind:posts"
+
+// post-list subsribes to event 'create' that is generated from the
+// createPost method in PostForm.vue component
 <template>
   <div class='app'>
-    <post-form/>
-    <post-list :posts='posts'/>
+    <post-form
+      @create="createPost"
+    />
+    <post-list
+      :posts='posts'
+    />
   </div>
 </template>
 
 
 <!--
 @ references src folder (can be used from any project directory)
+
+createPost method will receive arguments defined in PostForm.vue
 -->
 <script>
 import PostForm from './components/PostForm';
@@ -31,22 +40,13 @@ export default {
         {id: 2, title: 'Some Title 2', body: 'Some Description 2'},
         {id: 3, title: 'Some Title 3', body: 'Some Description 3'}
       ],
-      title: '',
-      body: ''
     }
   },
 
 
   methods: {
-    createPost() {
-      const newPost = {
-        id: Date.now(),
-        title: this.title,
-        body: this.body,
-      }
-      this.posts.push(newPost)
-      this.title = '',
-      this.body = ''
+    createPost(post) {
+      this.posts.push(post);
     },
 
     inputTitle(event) {
@@ -58,19 +58,6 @@ export default {
 </script>
 
 
-
-<!--
-If we want this style to be available only for this component
-we can add flag scoped: <style scoped>
-Star (*) means the style will be applied for all elements
-
-Классическое обнуление:
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
--->
 <style>
 * {
   margin: 0;
